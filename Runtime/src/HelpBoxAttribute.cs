@@ -23,23 +23,13 @@ namespace CustomProperties {
             Error
         }
 
-        /// <summary>Type of message box.</summary>
-        public readonly HelpBoxType type;
+        /// <summary>The type of help box.</summary>
+        public HelpBoxType Type { get; set; }
 
-        /// <summary>Message to display.</summary>
-        public readonly string message;
+        /// <summary>The text to display.</summary>
+        public string Text { get; set; }
 
-        /// <summary>Height of the message box.</summary>
-        public readonly int height;
-
-        /// <summary>Create a new instance of the attribute.</summary>
-        /// <param name="type">   Type of message.</param>
-        /// <param name="message">Message to display.</param>
-        /// <param name="height"> Height of the box in multiples of inspector lines.</param>
-        public HelpBoxAttribute(HelpBoxType type, string message, int height = 2) {
-            this.type = type;
-            this.message = message;
-            this.height = height;
-        }
+        /// <summary>Toggle to make box indented</summary>
+        public bool Indented { get; set; } = true;
     }
 }

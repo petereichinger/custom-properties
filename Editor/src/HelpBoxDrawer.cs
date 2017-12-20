@@ -5,46 +5,43 @@ namespace CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="HelpBoxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(HelpBoxAttribute))]
-    public class HelpBoxDrawer : PropertyDrawer {
-        private const float SPACER = 4f;
+    public class HelpBoxDrawer : DecoratorDrawer {
 
-        /// <summary>Get height for the property.</summary>
-        /// <param name="property">Property.</param>
-        /// <param name="label">   Label.</param>
+        /// <summary>Get height of the decorator.</summary>
         /// <returns>The height in pixels.</returns>
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-            float baseHeight = base.GetPropertyHeight(property, label);
-            var helpBoxAttribute = attribute as HelpBoxAttribute;
-            float boxHeight = 0f;
-            if (helpBoxAttribute != null) {
-                boxHeight = helpBoxAttribute.height * EditorGUIUtility.singleLineHeight;
+        public override float GetHeight() {
+            var attr = (HelpBoxAttribute)attribute;
+            float width = EditorGUIUtility.currentViewWidth;
+            if (attr.Indented) {
+                Rect rect = new Rect(0, 0, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight);
+                EditorGUI.indentLevel++;
+                width = EditorGUI.IndentedRect(rect).width;
+                EditorGUI.indentLevel--;
             }
-            return baseHeight + boxHeight + SPACER;
+            var boxHeight = EditorStyles.helpBox.CalcHeight(new GUIContent(attr.Text), width);
+            boxHeight = Mathf.Max(EditorGUIUtility.singleLineHeight * 1.5f, boxHeight);
+            return boxHeight;
         }
 
-        /// <summary>Method that draws the attributed property.</summary>
-        /// <param name="position">Position.</param>
-        /// <param name="property">Property to draw.</param>
-        /// <param name="label">   The label of the property.</param>
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-            var attrib = attribute as HelpBoxAttribute;
-            if (attrib == null) {
-                return;
+        /// <summary>Draw method for the attribute.</summary>
+        /// <param name="position"></param>
+        public override void OnGUI(Rect position) {
+            var attr = (HelpBoxAttribute)attribute;
+            if (attr.Indented) {
+                EditorGUI.indentLevel++;
+                position = EditorGUI.IndentedRect(position);
+                EditorGUI.indentLevel--;
             }
-
-            var helpRect = new Rect(position);
-            var propertyHeight = base.GetPropertyHeight(property, label);
-            helpRect.height -= propertyHeight + SPACER;
-
-            EditorGUI.HelpBox(helpRect, attrib.message, GetTypeForAttrib(attrib));
-
-            var propertyRect = new Rect(position);
-            propertyRect.yMin = propertyRect.yMax - propertyHeight;
-            EditorGUI.PropertyField(propertyRect, property, label);
+            EditorGUI.HelpBox(position, attr.Text, GetTypeForBox(attr));
         }
 
-        private MessageType GetTypeForAttrib(HelpBoxAttribute attrib) {
-            switch (attrib.type) {
+        /// <summary>
+        /// Get the <see cref="MessageType"/> that fits to the <see cref="HelpBoxAttribute"/> of <paramref name="attr"/>.
+        /// </summary>
+        /// <param name="attr">Attribute</param>
+        /// <returns>The appropriate <see cref="MessageType"/>.</returns>
+        private MessageType GetTypeForBox(HelpBoxAttribute attr) {
+            switch (attr.Type) {
                 case HelpBoxAttribute.HelpBoxType.Info:
                     return MessageType.Info;
 
