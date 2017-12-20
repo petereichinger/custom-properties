@@ -2,7 +2,30 @@
 
 This is a collection of custom properties for the Unity 3D engine.
 
+### EnumFlags
+
+Attribute that draws an enum field as a flag dropdown. The used enum should have the Attribute `System.Flags`.
+
+### ExecuteButton
+
+Attribute that shows a button that executes a method on the object.
+
+### HelpBox
+
+Attribute that shows a help box. This is a decorator.
+
+### MinMax
+
+Interprets `Vector2` and `Vector2Int` values as a minmax range.
 
 ### NotNull
 
-This property can be added so that there will be an error box if a reference is not set in the inspector.
+Attribute that shows an error box if an object reference is not set.
+
+### Readonly
+
+Attribute that displays the value of the field as a label.
+
+### Tag
+
+Attribute that can be added to `string` attributes. Instead of the `string` value a dropdown with all available Tags is displayed.
