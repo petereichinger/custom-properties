@@ -33,13 +33,19 @@ namespace CustomProperties.Editor {
             var buttonRect = new Rect(position);
             buttonRect.yMin = buttonRect.yMax - EditorGUIUtility.singleLineHeight;
 
-            if (GUI.Button(buttonRect, Attribute.MethodName)) {
-                var type = property.serializedObject.targetObject.GetType();
-                var method = type.GetMethod(Attribute.MethodName, FLAGS);
+            var type = property.serializedObject.targetObject.GetType();
+            var method = type.GetMethod(Attribute.MethodName, FLAGS);
 
-                Assert.IsNotNull(method, $"Method {Attribute.MethodName} not found");
+            GUI.enabled = method != null;
+            string text = Attribute.MethodName;
+
+            if (method == null) {
+                text = $"{Attribute.MethodName} does not exist!";
+            }
+            if (GUI.Button(buttonRect, text)) {
                 method?.Invoke(property.serializedObject.targetObject, null);
             }
+            GUI.enabled = true;
         }
     }
 }
