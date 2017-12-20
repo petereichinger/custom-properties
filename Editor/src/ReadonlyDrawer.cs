@@ -1,0 +1,78 @@
+using UnityEditor;
+using UnityEngine;
+
+namespace CustomProperties.Editor {
+
+    /// <summary>Drawer for <see cref="ReadonlyAttribute"/>.</summary>
+    [CustomPropertyDrawer(typeof(ReadonlyAttribute))]
+    public class ReadonlyDrawer : PropertyDrawer {
+
+        /// <summary>Method that draws the attributed property.</summary>
+        /// <param name="position">Position.</param>
+        /// <param name="property">Property to draw.</param>
+        /// <param name="label">   The label of the property.</param>
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+            string value;
+
+            switch (property.propertyType) {
+                case SerializedPropertyType.Integer:
+                    value = property.intValue.ToString();
+                    break;
+
+                case SerializedPropertyType.Boolean:
+                    value = property.boolValue.ToString();
+                    break;
+
+                case SerializedPropertyType.Float:
+                    value = property.floatValue.ToString();
+                    break;
+
+                case SerializedPropertyType.String:
+                    value = property.stringValue;
+                    break;
+
+                case SerializedPropertyType.Color:
+                    value = property.colorValue.ToString();
+                    break;
+
+                case SerializedPropertyType.ObjectReference:
+                    value = property.objectReferenceValue.name;
+                    break;
+
+                case SerializedPropertyType.Vector2:
+                    value = property.vector2Value.ToString();
+                    break;
+
+                case SerializedPropertyType.Vector3:
+                    value = property.vector3Value.ToString();
+                    break;
+
+                case SerializedPropertyType.Vector4:
+                    value = property.vector4Value.ToString();
+                    break;
+
+                case SerializedPropertyType.Rect:
+                    value = property.rectValue.ToString();
+                    break;
+
+                case SerializedPropertyType.Bounds:
+                    value = property.boundsValue.ToString();
+                    break;
+
+                case SerializedPropertyType.Quaternion:
+                    value = string.Format("{0}{1}", property.quaternionValue, property.quaternionValue.eulerAngles);
+                    break;
+
+                case SerializedPropertyType.Enum:
+                    value = property.enumDisplayNames[property.enumValueIndex];
+                    break;
+
+                default:
+                    EditorGUI.HelpBox(position, "Generic type is not supported by readonly attribute", MessageType.Error);
+                    return;
+            }
+            position = EditorGUI.PrefixLabel(position, new GUIContent(property.displayName));
+            EditorGUI.SelectableLabel(position, value);
+        }
+    }
+}
