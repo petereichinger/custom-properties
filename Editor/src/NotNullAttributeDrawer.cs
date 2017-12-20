@@ -7,6 +7,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace CustomProperties.Editor {
+    /// <summary>
+    /// Drawer for the Attribute <see cref="NotNullAttribute"/>.
+    /// </summary>
     [CustomPropertyDrawer(typeof(NotNullAttribute))]
     public class NotNullAttributeDrawer : PropertyDrawer {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
@@ -17,6 +20,8 @@ namespace CustomProperties.Editor {
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+
+            NotNullAttribute nna = (NotNullAttribute) attribute;
             var propertyRect = position;
             float propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
             propertyRect.height = propertyHeight;
@@ -29,7 +34,11 @@ namespace CustomProperties.Editor {
             }
 
             if (property.objectReferenceValue == null) {
-                EditorGUI.HelpBox(warningRect, "Should not be empty", MessageType.Error);
+                string text = "Should not be empty";
+                if (!string.IsNullOrWhiteSpace(nna.Message)) {
+                    text = nna.Message;
+                }
+                EditorGUI.HelpBox(warningRect, text, MessageType.Error);
             }
         }
 
