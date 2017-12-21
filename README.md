@@ -22,6 +22,10 @@ Attribute that shows a button that executes a method on the object.
 
 Attribute that shows a help box. This is a decorator.
 
+### Min / Max
+
+These Attributes limit a `float` field to a minimum or maximum respectively.
+
 ### MinMax
 
 Interprets `Vector2` and `Vector2Int` values as a minmax range.
