@@ -52,6 +52,7 @@
     <Compile Include="src\EnumFlagsDrawer.cs" />
     <Compile Include="src\ExecuteButtonAttributeDrawer.cs" />
     <Compile Include="src\HelpBoxDrawer.cs" />
+    <Compile Include="src\MaxDrawer.cs" />
     <Compile Include="src\MinDrawer.cs" />
     <Compile Include="src\MinMaxAttributeDrawer.cs" />
     <Compile Include="src\NotNullAttributeDrawer.cs" />
