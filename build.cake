@@ -30,18 +30,8 @@ Task("Build")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild("./CustomProperties.sln", settings =>
+    DotNetBuild("./CustomProperties.sln", settings =>
         settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild("./CustomProperties.sln", settings =>
-        settings.SetConfiguration(configuration));
-    }
 });
 
 Task("CopyToDir")
