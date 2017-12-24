@@ -40,9 +40,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files\Unity 2017\Editor\Data\Managed\UnityEngine.dll</HintPath>
-      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath Condition="Exists('/Applications/Unity/Unity.app')">/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Unity 2017')">C:\Program Files\Unity 2017\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Unity')">C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
