@@ -49,11 +49,13 @@
     <Compile Include="src\EnumFlagsAttribute.cs" />
     <Compile Include="src\ExecuteButtonAttribute.cs" />
     <Compile Include="src\HelpBoxAttribute.cs" />
+    <Compile Include="src\IMessageAttribute.cs" />
     <Compile Include="src\MaxAttribute.cs" />
     <Compile Include="src\MinAttribute.cs" />
     <Compile Include="src\MinMaxAttribute.cs" />
     <Compile Include="src\NotNullAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\NotWhiteSpaceAttribute.cs" />
     <Compile Include="src\ReadonlyAttribute.cs" />
     <Compile Include="src\TagAttribute.cs" />
   </ItemGroup>
