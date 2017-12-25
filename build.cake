@@ -31,7 +31,7 @@ Task("Build")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetBuild("./CustomProperties.sln", settings =>
+    MSBuild("./CustomProperties.sln", settings =>
         settings.SetConfiguration(configuration)
             .WithProperty("OutDir", MakeAbsolute(buildDir).ToString())
         );
