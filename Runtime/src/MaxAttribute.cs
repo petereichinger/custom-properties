@@ -11,10 +11,10 @@ namespace CustomProperties {
         /// <summary>Create a new instance of this attribute.</summary>
         /// <param name="max">The value to restrict to.</param>
         public MaxAttribute(float max) {
-            Max = max;
+            Value = max;
         }
 
         /// <summary>The restricted value.</summary>
-        public float Max { get; set; }
+        public float Value { get; set; }
     }
 }

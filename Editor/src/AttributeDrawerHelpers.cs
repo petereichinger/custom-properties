@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace CustomProperties.Editor {
-    internal class AttributeDrawerHelpers {
+    internal static class AttributeDrawerHelpers {
 
         internal static void MessageDrawerOnGUI(IMessageAttribute attribute, Rect position, SerializedProperty property, GUIContent label,
              Func<SerializedProperty, bool> valueCheckFunc, SerializedPropertyType type, string valueErrorMessage) {
@@ -30,5 +30,32 @@ namespace CustomProperties.Editor {
                 EditorGUI.HelpBox(warningRect, text, MessageType.Error);
             }
         }
+
+        internal static void ValueRestrictionDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label,
+            Func<int, int> intModifier, Func<float,float> floatModifier) {
+            switch (property.propertyType) {
+                case SerializedPropertyType.Integer:
+                    EditorGUI.PropertyField(position, property, label, true);
+                    var intValue = property.intValue;
+                    intValue = intModifier(intValue);
+                    property.intValue = intValue;
+                    break;
+
+                case SerializedPropertyType.Float:
+                    EditorGUI.PropertyField(position, property, label, true);
+                    var floatValue = property.floatValue;
+                    floatValue = floatModifier(floatValue);
+                    property.floatValue = floatValue;
+                    break;
+
+                default:
+                    EditorGuiHelpers.GetLabelContentRects(position, out Rect labelRect, out Rect contentRect);
+                    GUI.Label(labelRect, label);
+                    EditorGUI.HelpBox(contentRect, "Only applicable to float or int.", MessageType.Error);
+                    break;
+            }
+
+            property.serializedObject.ApplyModifiedProperties();
+        } 
     }
 }

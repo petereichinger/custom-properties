@@ -11,27 +11,8 @@ namespace CustomProperties.Editor {
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var maxAttribute = (MaxAttribute) attribute;
-            switch (property.propertyType) {
-                case SerializedPropertyType.Integer:
-                    var intValue = EditorGUI.IntField(position, label, property.intValue);
-                    intValue = Mathf.Min(intValue, (int) maxAttribute.Max);
-                    property.intValue = intValue;
-                    break;
 
-                case SerializedPropertyType.Float:
-                    var value = EditorGUI.FloatField(position, label, property.floatValue);
-                    value = Mathf.Min(value, (int) maxAttribute.Max);
-                    property.floatValue = value;
-                    break;
-
-                default:
-                    EditorGuiHelpers.GetLabelContentRects(position, out Rect labelRect, out Rect contentRect);
-                    GUI.Label(labelRect, label);
-                    EditorGUI.HelpBox(contentRect, "Only applicable to float or int.", MessageType.Error);
-                    break;
-            }
-
-            property.serializedObject.ApplyModifiedProperties();
+            AttributeDrawerHelpers.ValueRestrictionDrawerOnGUI(position, property, label, i => Mathf.Min(i, (int) maxAttribute.Value), f => Mathf.Min(f, maxAttribute.Value));
         }
     }
 }
