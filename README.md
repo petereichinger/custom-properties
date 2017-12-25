@@ -10,6 +10,23 @@ The repo contains a Visual Studio 2017 project. You can build it yourself or che
 
 The solution consists of two dll projects. One contains the attribute definitions (`Runtime`) and the other the editor code that draws the Attributes. The editor dll must be placed inside an `Editor` folder within Unity.
 
+### Build
+
+
+#### Visual Studio 
+
+This project contains a Visual Studio 2017 solution file. 
+
+#### Cake
+
+Usage:
+
+```
+Windows: ./build.ps1
+Linux: ./buildl.ps1
+macOS: ./buildm.ps1
+```
+
 ### EnumFlags
 
 Attribute that draws an enum field as a flag dropdown. The used enum should have the Attribute `System.Flags`.
@@ -33,6 +50,10 @@ Interprets `Vector2` and `Vector2Int` values as a minmax range.
 ### NotNull
 
 Attribute that shows an error box if an object reference is not set.
+
+### NotWhitespace
+
+Attribute for strings that shows an error message when the value is empty or whitespace only.
 
 ### Readonly
 
