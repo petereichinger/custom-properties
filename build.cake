@@ -1,11 +1,10 @@
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
-
+const string PROJECT_PATH_ARGUMENT = "projectPath";
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var projectDir = Argument("projectDir",  (string)null);
-var targetDir = Argument("projectRelativePath", "Assets/CustomProperties/");
+var projectDir = Argument(PROJECT_PATH_ARGUMENT,  (string)null);
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -37,17 +36,27 @@ Task("Build")
         );
 });
 
+void ShowProjectDirInfo() {
+    Error("Specify a project directory");
+    Error("Example:");
+    if (IsRunningOnWindows())
+    {
+        Error($"./build.ps1 -ScriptArgs '-{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/' -target CopyToProject");
+    } else {
+        Error($"./build.sh -Target=CopyToProject -{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/");
+    }
+}
+
 Task("CopyToProject")
     .IsDependentOn("Build")
     .Does(() =>
 {
 
     if (string.IsNullOrEmpty(projectDir)){
-        Error("Specify a project directory\nExample:\n   ./build.ps1 -ScriptArgs '-projectDir=Path/To/Unity/Project' -target CopyToProject");
-        Error("Optional: -projectRelativePath to specify a path inside the project where to copy the file");
-        throw new ArgumentException("-projectDir is not set");
+        ShowProjectDirInfo();
+        throw new ArgumentException($"-{PROJECT_PATH_ARGUMENT} is not set");
     } else {
-        var runtimePath = Directory(projectDir) + Directory(targetDir);
+        var runtimePath = Directory(projectDir);
         Information($"Copying files to: {runtimePath.ToString()}");
         var filesRuntime = GetFiles(buildDir.ToString() + "/CustomProperties.dll") +
                            GetFiles(buildDir.ToString() + "/CustomProperties.xml");
