@@ -24,7 +24,16 @@ namespace CustomProperties.Editor {
                 EditorGUI.HelpBox(position, "EnumFlags only works on enums", MessageType.Error);
                 return;
             }
-            property.intValue = EditorGUI.MaskField(position, label, property.intValue, property.enumNames);
+
+            GUIStyle maskStyle = new GUIStyle(EditorStyles.popup);
+            GUIStyle labelStyle = new GUIStyle(EditorStyles.label);
+            if (property.prefabOverride) {
+                labelStyle.font = maskStyle.font = EditorStyles.boldFont;
+            }
+
+            EditorGuiHelpers.GetLabelContentRects(position, out Rect labelRect, out Rect contentRect);
+            GUI.Label(labelRect,label,labelStyle);
+            property.intValue = EditorGUI.MaskField(contentRect, GUIContent.none, property.intValue, property.enumNames, maskStyle);
         }
     }
 }
