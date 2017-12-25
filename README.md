@@ -23,9 +23,13 @@ Usage:
 
 ```
 Windows: ./build.ps1
-Linux: ./buildl.ps1
-macOS: ./buildm.ps1
+Linux / macOS: ./build.sh
 ```
+
+This will build the solution and put the results in the `build` folder.
+
+There is a task `CopyToProject` which will copy the build `.dll` and `.xml` files to a Unity project.
+See the help message that will be printed for instructions.
 
 ### EnumFlags
 
