@@ -49,9 +49,8 @@ namespace CustomProperties.Editor {
                     break;
 
                 default:
-                    EditorGuiHelpers.GetLabelContentRects(position, out Rect labelRect, out Rect contentRect);
-                    GUI.Label(labelRect, label);
-                    EditorGUI.HelpBox(contentRect, "Only applicable to float or int.", MessageType.Error);
+                    position = EditorGUI.PrefixLabel(position, label);
+                    EditorGUI.HelpBox(position, "Only applicable to float or int.", MessageType.Error);
                     break;
             }
 

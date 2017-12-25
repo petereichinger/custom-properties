@@ -31,9 +31,9 @@ namespace CustomProperties.Editor {
                 labelStyle.font = maskStyle.font = EditorStyles.boldFont;
             }
 
-            EditorGuiHelpers.GetLabelContentRects(position, out Rect labelRect, out Rect contentRect);
-            GUI.Label(labelRect,label,labelStyle);
-            property.intValue = EditorGUI.MaskField(contentRect, GUIContent.none, property.intValue, property.enumNames, maskStyle);
+
+            position = EditorGUI.PrefixLabel(position,label,labelStyle);
+            property.intValue = EditorGUI.MaskField(position, GUIContent.none, property.intValue, property.enumNames, maskStyle);
         }
     }
 }

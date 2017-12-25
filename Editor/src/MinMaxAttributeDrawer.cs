@@ -24,21 +24,20 @@ namespace CustomProperties.Editor {
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             label = EditorGUI.BeginProperty(position, label, property);
-            Rect labelRect, content;
-            EditorGuiHelpers.GetLabelContentRects(position, out labelRect, out content);
-            GUI.Label(labelRect, label);
+
+            position = EditorGUI.PrefixLabel(position, label);
 
             switch (property.propertyType) {
                 case SerializedPropertyType.Vector2:
-                    ShowVector2(content, property);
+                    ShowVector2(position, property);
                     break;
 
                 case SerializedPropertyType.Vector2Int:
-                    ShowVector2Int(content, property);
+                    ShowVector2Int(position, property);
                     break;
 
                 default:
-                    ShowErrorBox(content);
+                    ShowErrorBox(position);
                     return;
             }
             EditorGUI.EndProperty();
