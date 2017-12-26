@@ -30,10 +30,20 @@ namespace CustomProperties.Editor {
             if (property.prefabOverride) {
                 labelStyle.font = maskStyle.font = EditorStyles.boldFont;
             }
+            position = EditorGUI.PrefixLabel(position, label, labelStyle);
 
+            if (property.hasMultipleDifferentValues) {
+                EditorGUI.showMixedValue = true;
+            }
+            using (var check = new EditorGUI.ChangeCheckScope()) {
+                int newValue = EditorGUI.MaskField(position, GUIContent.none, property.intValue, property.enumNames, maskStyle);
 
-            position = EditorGUI.PrefixLabel(position,label,labelStyle);
-            property.intValue = EditorGUI.MaskField(position, GUIContent.none, property.intValue, property.enumNames, maskStyle);
+                if (check.changed) {
+                    property.intValue = newValue;
+                }
+            }
+            
+            EditorGUI.showMixedValue = false;
         }
     }
 }
