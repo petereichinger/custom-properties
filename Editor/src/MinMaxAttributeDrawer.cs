@@ -78,8 +78,8 @@ namespace CustomProperties.Editor {
 
         private void ShowVector2Int(Rect content, SerializedProperty property) {
             var value = property.vector2IntValue;
-            Rect left, right;
-            EditorGuiHelpers.SplitRectVertically(content, out left, out right, 0.5f);
+
+            EditorGuiHelpers.SplitRectVertically(content, out Rect left, out Rect right, 0.5f);
             SetLabelWidth(30f);
             using (var check = new EditorGUI.ChangeCheckScope()) {
                 var newMin = EditorGUI.IntField(left, "Min", value.x);

@@ -10,7 +10,7 @@ namespace CustomProperties.Editor {
         /// <param name="label">   Label.</param>
         /// <returns>The height in pixels.</returns>
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-            if (!CheckType(property) || property.objectReferenceValue == null) {
+            if (!CheckType(property) || !CheckValue(property)) {
                 return base.GetPropertyHeight(property, label) + EditorGUIUtility.singleLineHeight * 2f + 2f;
             }
             return base.GetPropertyHeight(property, label);
@@ -22,11 +22,16 @@ namespace CustomProperties.Editor {
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var nna = (NotNullAttribute) attribute;
-            AttributeDrawerHelpers.MessageDrawerOnGUI(nna.Message, position, property, label, p => p.objectReferenceValue != null, SerializedPropertyType.ObjectReference, "Should not be null");
+            string message = string.IsNullOrEmpty(nna.Message) ? "Should not be null" : nna.Message;
+            AttributeDrawerHelpers.MessageDrawerOnGUI(message, position, property, label, CheckValue, SerializedPropertyType.ObjectReference);
         }
 
         private bool CheckType(SerializedProperty property) {
             return property.propertyType == SerializedPropertyType.ObjectReference;
+        }
+
+        private bool CheckValue(SerializedProperty property) {
+            return property.objectReferenceValue != null;
         }
     }
 }

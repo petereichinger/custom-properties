@@ -22,7 +22,8 @@ namespace CustomProperties.Editor {
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var nwsa = (NotWhiteSpaceAttribute) attribute;
-            AttributeDrawerHelpers.MessageDrawerOnGUI(nwsa.Message, position, property, label, p => !string.IsNullOrWhiteSpace(p.stringValue), SerializedPropertyType.String, "Should not be empty or whitespace");
+            string message = string.IsNullOrEmpty(nwsa.Message) ? "Should not be empty or whitespace" : nwsa.Message;
+            AttributeDrawerHelpers.MessageDrawerOnGUI(message, position, property, label, CheckValue, SerializedPropertyType.String);
         }
 
         private bool CheckType(SerializedProperty property) {

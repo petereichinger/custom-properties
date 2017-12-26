@@ -10,7 +10,7 @@ namespace CustomProperties.Editor {
     internal static class AttributeDrawerHelpers {
 
         internal static void MessageDrawerOnGUI(string message, Rect position, SerializedProperty property, GUIContent label,
-             Func<SerializedProperty, bool> valueCheckFunc, SerializedPropertyType type, string valueErrorMessage) {
+             Func<SerializedProperty, bool> valueCheckFunc, SerializedPropertyType type) {
             var propertyRect = position;
             float propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
             propertyRect.height = propertyHeight;
@@ -23,11 +23,7 @@ namespace CustomProperties.Editor {
             }
 
             if (!valueCheckFunc(property)) {
-                string text = valueErrorMessage;
-                if (!string.IsNullOrWhiteSpace(message)) {
-                    text = message;
-                }
-                EditorGUI.HelpBox(warningRect, text, MessageType.Error);
+                EditorGUI.HelpBox(warningRect, message, MessageType.Error);
             }
         }
 
