@@ -10,15 +10,15 @@ The repo contains a Visual Studio 2017 project. You can build it yourself or che
 
 The solution consists of two dll projects. One contains the attribute definitions (`Runtime`) and the other the editor code that draws the Attributes. The editor dll must be placed inside an `Editor` folder within Unity.
 
-### Build
+## Build
 
 
-#### Visual Studio 
+### Visual Studio 
 
 This project contains a Visual Studio 2017 solution file.
 The assemblies `UnityEditor.dll` and `UnityEngine.dll` are already referenced and should work when Unity is installed at the default location. 
 
-#### Cake
+### Cake
 
 *Usage:*
 
@@ -39,6 +39,7 @@ There are optional parameters:
 | -projectPath | Path to copy the resulting dll and xml files to. This is useful for testing.            |
 | -unityPath   | Path to a Unity installation. This will force the build to use this Unity installation. |
 
+## Available Properties
 
 ### EnumFlags
 
