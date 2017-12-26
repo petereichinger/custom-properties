@@ -23,7 +23,7 @@ namespace CustomProperties.Editor {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var nna = (NotNullAttribute) attribute;
             string message = string.IsNullOrEmpty(nna.Message) ? "Should not be null" : nna.Message;
-            AttributeDrawerHelpers.MessageDrawerOnGUI(message, position, property, label, CheckValue, SerializedPropertyType.ObjectReference);
+            AttributeDrawerHelpers.MessageDrawerOnGUI(position, property, label, SerializedPropertyType.ObjectReference, CheckValue, message);
         }
 
         private bool CheckType(SerializedProperty property) {

@@ -29,7 +29,7 @@ namespace CustomProperties.Editor {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var nwsa = (RequireLayerAttribute)attribute;
             string message = string.IsNullOrEmpty(nwsa.Message) ? "Requires a layer" : nwsa.Message;
-            AttributeDrawerHelpers.MessageDrawerOnGUI(message, position, property, label, CheckValue, SerializedPropertyType.LayerMask);
+            AttributeDrawerHelpers.MessageDrawerOnGUI(position, property, label, SerializedPropertyType.LayerMask, CheckValue, message);
         }
 
         private bool CheckType(SerializedProperty property) {
