@@ -16,16 +16,18 @@ namespace CustomProperties.Editor {
                 EditorGUI.HelpBox(position, "[Tag] only useable on string fields.", MessageType.Error);
                 return;
             }
-            GUIStyle maskStyle = new GUIStyle(EditorStyles.popup);
-            GUIStyle labelStyle = new GUIStyle(EditorStyles.label);
-            if (property.prefabOverride) {
-                labelStyle.font = maskStyle.font = EditorStyles.boldFont;
-            }
 
-            using (new EditorGUI.PropertyScope(position, label, property)) {
-                position = EditorGUI.PrefixLabel(position, label, labelStyle);
-
+            using (var scope = new EditorGUI.PropertyScope(position, label, property)) {
+                position = EditorGUI.PrefixLabel(position, scope.content);
+                GUIStyle maskStyle = new GUIStyle(EditorStyles.popup);
+                if (property.prefabOverride) {
+                    maskStyle.font = EditorStyles.boldFont;
+                }
+                if (property.hasMultipleDifferentValues) {
+                    EditorGUI.showMixedValue = true;
+                }
                 property.stringValue = EditorGUI.TagField(position, GUIContent.none, property.stringValue, maskStyle);
+                EditorGUI.showMixedValue = false;
             }
         }
     }
