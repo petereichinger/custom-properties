@@ -85,9 +85,9 @@ void ShowProjectDirInfo() {
     Error("Specify a project directory");
     Error("Example:");
     if (IsRunningOnWindows()) {
-        Error($"./build.ps1 -ScriptArgs '-{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/' -target CopyToProject");
+        Error($"./build.ps1 -{PROJECT_PATH_ARGUMENT} PathToProject/Assets/CustomProperties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path -target CopyToProject");
     } else {
-        Error($"./build.sh -Target=CopyToProject -{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/");
+        Error($"./build.sh -Target=CopyToProject -{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path");
     }
 }
 
