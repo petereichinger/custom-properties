@@ -15,11 +15,12 @@ The solution consists of two dll projects. One contains the attribute definition
 
 #### Visual Studio 
 
-This project contains a Visual Studio 2017 solution file. 
+This project contains a Visual Studio 2017 solution file.
+The assemblies `UnityEditor.dll` and `UnityEngine.dll` are already referenced and should work when Unity is installed at the default location. 
 
 #### Cake
 
-Usage:
+*Usage:*
 
 ```
 Windows: ./build.ps1
@@ -30,6 +31,14 @@ This will build the solution and put the results in the `build` folder.
 
 There is a task `CopyToProject` which will copy the build `.dll` and `.xml` files to a Unity project.
 See the help message that will be printed for instructions.
+
+There are optional parameters:
+
+|  Parameter   |                                         Meaning                                         |
+|--------------|-----------------------------------------------------------------------------------------|
+| -projectPath | Path to copy the resulting dll and xml files to. This is useful for testing.            |
+| -unityPath   | Path to a Unity installation. This will force the build to use this Unity installation. |
+
 
 ### EnumFlags
 
