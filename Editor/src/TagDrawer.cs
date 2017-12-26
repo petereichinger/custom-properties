@@ -22,8 +22,11 @@ namespace CustomProperties.Editor {
                 labelStyle.font = maskStyle.font = EditorStyles.boldFont;
             }
 
-            position = EditorGUI.PrefixLabel(position, label, labelStyle);
-            property.stringValue = EditorGUI.TagField(position, GUIContent.none, property.stringValue,maskStyle);
+            using (new EditorGUI.PropertyScope(position, label, property)) {
+                position = EditorGUI.PrefixLabel(position, label, labelStyle);
+
+                property.stringValue = EditorGUI.TagField(position, GUIContent.none, property.stringValue, maskStyle);
+            }
         }
     }
 }
