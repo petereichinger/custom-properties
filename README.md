@@ -64,13 +64,17 @@ Interprets `Vector2` and `Vector2Int` values as a minmax range.
 
 Attribute that shows an error box if an object reference is not set.
 
-### NotWhitespace
+### NotWhiteSpace
 
 Attribute for strings that shows an error message when the value is empty or whitespace only.
 
 ### Readonly
 
 Attribute that displays the value of the field as a label.
+
+### RequireLayer
+
+Attribute for layer masks that shows an error message when no layer is selected.
 
 ### Tag
 
