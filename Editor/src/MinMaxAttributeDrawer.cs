@@ -56,8 +56,7 @@ namespace CustomProperties.Editor {
 
         private void ShowVector2(Rect content, SerializedProperty property) {
             var value = property.vector2Value;
-            Rect left, right;
-            EditorGuiHelpers.SplitRectVertically(content, out left, out right, 0.5f);
+            EditorGuiHelpers.SplitRectVertically(content, out Rect left, out Rect right, 0.5f);
             SetLabelWidth(30f);
             using (var check = new EditorGUI.ChangeCheckScope()) {
                 var newMin = EditorGUI.FloatField(left, "Min", value.x);

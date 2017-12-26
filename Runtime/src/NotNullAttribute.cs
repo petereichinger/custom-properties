@@ -5,7 +5,7 @@ namespace CustomProperties {
     /// <summary>
     /// Attribut for fields that should be set in the editor. Only useable for object references.
     /// </summary>
-    public class NotNullAttribute : PropertyAttribute, IMessageAttribute {
+    public class NotNullAttribute : PropertyAttribute {
 
         /// <summary>Create a new instance of this attribute.</summary>
         /// <param name="message">Optional message to show.</param>

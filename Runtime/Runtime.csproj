@@ -49,7 +49,6 @@
     <Compile Include="src\EnumFlagsAttribute.cs" />
     <Compile Include="src\ExecuteButtonAttribute.cs" />
     <Compile Include="src\HelpBoxAttribute.cs" />
-    <Compile Include="src\IMessageAttribute.cs" />
     <Compile Include="src\MaxAttribute.cs" />
     <Compile Include="src\MinAttribute.cs" />
     <Compile Include="src\MinMaxAttribute.cs" />

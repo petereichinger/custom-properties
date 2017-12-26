@@ -1,13 +1,10 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace CustomProperties.Editor {
-
-    /// <summary>Drawer for the Attribute <see cref="NotNullAttribute"/>.</summary>
+    /// <summary>Drawer for the Attribute <see cref="NotNullAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(NotNullAttribute))]
     public class NotNullAttributeDrawer : PropertyDrawer {
-
         /// <summary>Get height for the property.</summary>
         /// <param name="property">Property.</param>
         /// <param name="label">   Label.</param>
@@ -24,10 +21,8 @@ namespace CustomProperties.Editor {
         /// <param name="property">Property to draw.</param>
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-            if (!(attribute is IMessageAttribute)) {
-                throw new ArgumentOutOfRangeException();
-            }
-            AttributeDrawerHelpers.MessageDrawerOnGUI((IMessageAttribute)attribute, position, property, label, p => p.objectReferenceValue != null, SerializedPropertyType.ObjectReference, "Should not be null");
+            var nna = (NotNullAttribute) attribute;
+            AttributeDrawerHelpers.MessageDrawerOnGUI(nna.Message, position, property, label, p => p.objectReferenceValue != null, SerializedPropertyType.ObjectReference, "Should not be null");
         }
 
         private bool CheckType(SerializedProperty property) {

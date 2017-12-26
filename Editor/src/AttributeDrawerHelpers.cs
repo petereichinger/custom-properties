@@ -9,7 +9,7 @@ using UnityEngine;
 namespace CustomProperties.Editor {
     internal static class AttributeDrawerHelpers {
 
-        internal static void MessageDrawerOnGUI(IMessageAttribute attribute, Rect position, SerializedProperty property, GUIContent label,
+        internal static void MessageDrawerOnGUI(string message, Rect position, SerializedProperty property, GUIContent label,
              Func<SerializedProperty, bool> valueCheckFunc, SerializedPropertyType type, string valueErrorMessage) {
             var propertyRect = position;
             float propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
@@ -24,8 +24,8 @@ namespace CustomProperties.Editor {
 
             if (!valueCheckFunc(property)) {
                 string text = valueErrorMessage;
-                if (!string.IsNullOrWhiteSpace(attribute.Message)) {
-                    text = attribute.Message;
+                if (!string.IsNullOrWhiteSpace(message)) {
+                    text = message;
                 }
                 EditorGUI.HelpBox(warningRect, text, MessageType.Error);
             }
