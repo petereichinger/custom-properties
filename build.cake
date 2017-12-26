@@ -127,7 +127,7 @@ Task("PrepareRelease")
     .IsDependentOn("Build")
     .Does(()=> {
 
-    Information("Creating ZIP archive: CustomProperties.zip")
+    Information("Creating ZIP archive: CustomProperties.zip");
     var runtimeDll = buildDir + File("CustomProperties.dll");
     var runtimeXml = buildDir + File("CustomProperties.xml");
     var editorDll = buildDir + File("CustomPropertiesEditor.dll");
