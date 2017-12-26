@@ -64,6 +64,7 @@
     <Compile Include="src\NotNullAttributeDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\ReadonlyDrawer.cs" />
+    <Compile Include="src\RequireLayerAttributeDrawer.cs" />
     <Compile Include="src\TagDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
