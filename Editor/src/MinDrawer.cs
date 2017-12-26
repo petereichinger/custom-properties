@@ -11,7 +11,12 @@ namespace CustomProperties.Editor {
         /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var minAttribute = (MinAttribute) attribute;
+
+            if (property.hasMultipleDifferentValues) {
+                EditorGUI.showMixedValue = true;
+            }
             AttributeDrawerHelpers.ValueRestrictionDrawerOnGUI(position, property, label, i => Mathf.Max(i, (int) minAttribute.Value), f => Mathf.Max(f, minAttribute.Value));
+            EditorGUI.showMixedValue = false;
         }
     }
 }

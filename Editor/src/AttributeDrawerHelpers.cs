@@ -30,17 +30,26 @@ namespace CustomProperties.Editor {
             Func<int, int> intModifier, Func<float,float> floatModifier) {
             switch (property.propertyType) {
                 case SerializedPropertyType.Integer:
-                    EditorGUI.PropertyField(position, property, label, true);
-                    var intValue = property.intValue;
-                    intValue = intModifier(intValue);
-                    property.intValue = intValue;
+                    using (var check = new EditorGUI.ChangeCheckScope()) { 
+                        EditorGUI.PropertyField(position, property, label, true);
+
+                        if (check.changed) {
+                            var intValue = property.intValue;
+                            intValue = intModifier(intValue);
+                            property.intValue = intValue;
+                        }
+                    }
                     break;
 
                 case SerializedPropertyType.Float:
-                    EditorGUI.PropertyField(position, property, label, true);
-                    var floatValue = property.floatValue;
-                    floatValue = floatModifier(floatValue);
-                    property.floatValue = floatValue;
+                    using (var check = new EditorGUI.ChangeCheckScope()) {
+                        EditorGUI.PropertyField(position, property, label, true);
+                        if (check.changed) {
+                            var floatValue = property.floatValue;
+                            floatValue = floatModifier(floatValue);
+                            property.floatValue = floatValue;
+                        }
+                    }
                     break;
 
                 default:
