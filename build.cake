@@ -1,4 +1,5 @@
-#addin "Cake.Incubator"
+#addin nuget:?package=SharpZipLib
+#addin nuget:?package=Cake.Compression
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -74,9 +75,9 @@ Task("Build")
         referencePath += unityAssemblySubDirectoryMac;
     }
     MSBuild(solutionFile, settings =>
-        settings.SetConfiguration(configuration)
+        settings.SetVerbosity(Verbosity.Minimal)
+            .SetConfiguration(configuration)
             .WithProperty("OutDir", MakeAbsolute(buildDir).ToString())
-            .SetVerbosity(Verbosity.Minimal)
             .WithProperty("ReferencePath", referencePath)
         );
 });
@@ -91,33 +92,52 @@ void ShowProjectDirInfo() {
     }
 }
 
+FilePathCollection GenerateFilePathCollection(params FilePath[] paths){
+    return new FilePathCollection(paths, PathComparer.Default);
+}
+
 Task("CopyToProject")
     .IsDependentOn("Build")
-    .Does(() =>
-{
-
+    .Does(() => {
     if (string.IsNullOrEmpty(projectDir)){
         ShowProjectDirInfo();
         throw new ArgumentException($"-{PROJECT_PATH_ARGUMENT} is not set");
     } else {
         var runtimePath = Directory(projectDir);
-        Information($"Copying files to: {runtimePath.ToString()}");
-        var filesRuntime = GetFiles(buildDir.ToString() + "/CustomProperties.dll") +
-                           GetFiles(buildDir.ToString() + "/CustomProperties.xml");
-        var filesEditor  = GetFiles(buildDir.ToString() + "/CustomPropertiesEditor.dll") +
-                           GetFiles(buildDir.ToString() + "/CustomPropertiesEditor.xml");
-
         var editorPath = runtimePath + Directory("Editor");
 
         EnsureDirectoryExists(editorPath);
+
+        Information($"Copying files to: {runtimePath.ToString()}");
+        var runtimeDll = buildDir + File("CustomProperties.dll");
+        var runtimeXml = buildDir + File("CustomProperties.xml");
+
+        var editorDll = buildDir + File("CustomPropertiesEditor.dll");
+        var editorXml = buildDir + File("CustomPropertiesEditor.xml");
+
+        var filesRuntime = GenerateFilePathCollection(runtimeDll, runtimeXml);
+        var filesEditor = GenerateFilePathCollection(editorDll, editorXml);
+
         CopyFiles(filesRuntime, runtimePath);
         CopyFiles(filesEditor, editorPath);
     }
 });
 
-//////////////////////////////////////////////////////////////////////
-// TASK TARGETS
-//////////////////////////////////////////////////////////////////////
+Task("PrepareRelease")
+    .IsDependentOn("Build")
+    .Does(()=> {
+
+    Information("Creating ZIP archive: CustomProperties.zip")
+    var runtimeDll = buildDir + File("CustomProperties.dll");
+    var runtimeXml = buildDir + File("CustomProperties.xml");
+    var editorDll = buildDir + File("CustomPropertiesEditor.dll");
+    var editorXml = buildDir + File("CustomPropertiesEditor.xml");
+    var readme = File("README.md");
+
+    var collection = GenerateFilePathCollection(runtimeDll,runtimeXml,editorDll,editorXml,readme);
+
+    Zip("./", "CustomProperties.zip", collection);
+});
 
 Task("Default")
     .IsDependentOn("Build");
