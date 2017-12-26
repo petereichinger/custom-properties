@@ -27,7 +27,7 @@ var unityAssemblySubDirectoryMac = Directory("/Contents/Managed/");
 var unityDirectory = (string)null;
 
 var searchPaths = new List<string>{
-    // "C:/Program Files/Unity 2017.3",
+    "C:/Program Files/Unity 2017.3",
     "C:/Program Files/Unity",
     "/Applications/Unity/Unity.app"
     };
