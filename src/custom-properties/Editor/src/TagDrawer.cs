@@ -1,4 +1,3 @@
-using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace UnityExtensions.CustomProperties.Editor {
 
             using (var scope = new EditorGUI.PropertyScope(position, label, property)) {
                 position = EditorGUI.PrefixLabel(position, scope.content);
-                GUIStyle maskStyle = new GUIStyle(EditorStyles.popup);
+                var maskStyle = new GUIStyle(EditorStyles.popup);
                 if (property.prefabOverride) {
                     maskStyle.font = EditorStyles.boldFont;
                 }

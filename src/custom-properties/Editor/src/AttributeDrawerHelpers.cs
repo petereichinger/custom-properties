@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
+
     internal static class AttributeDrawerHelpers {
 
         internal static void MessageDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label, SerializedPropertyType type, Func<SerializedProperty, bool> valuePredicate, string message) {
             var propertyRect = position;
-            float propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
+            var propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
             propertyRect.height = propertyHeight;
             EditorGUI.PropertyField(propertyRect, property, label, true);
             var warningRect = new Rect(position);
@@ -26,11 +23,10 @@ namespace UnityExtensions.CustomProperties.Editor {
             }
         }
 
-        internal static void ValueRestrictionDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label,
-            Func<int, int> intModifier, Func<float,float> floatModifier) {
+        internal static void ValueRestrictionDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label, Func<int, int> intModifier, Func<float, float> floatModifier) {
             switch (property.propertyType) {
                 case SerializedPropertyType.Integer:
-                    using (var check = new EditorGUI.ChangeCheckScope()) { 
+                    using (var check = new EditorGUI.ChangeCheckScope()) {
                         EditorGUI.PropertyField(position, property, label, true);
 
                         if (check.changed) {
@@ -59,6 +55,6 @@ namespace UnityExtensions.CustomProperties.Editor {
             }
 
             property.serializedObject.ApplyModifiedProperties();
-        } 
+        }
     }
 }

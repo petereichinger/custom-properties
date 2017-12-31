@@ -8,13 +8,13 @@ namespace UnityExtensions.CustomProperties {
     /// </summary>
     public class MinAttribute : PropertyAttribute {
 
+        /// <summary>The restricted value.</summary>
+        public float Value { get; set; }
+
         /// <summary>Create a new instance of this attribute.</summary>
         /// <param name="min">The value to restrict to.</param>
         public MinAttribute(float min) {
             Value = min;
         }
-
-        /// <summary>The restricted value.</summary>
-        public float Value { get; set; }
     }
 }

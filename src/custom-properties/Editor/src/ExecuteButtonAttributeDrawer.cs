@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
-using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace UnityExtensions.CustomProperties.Editor {
 
@@ -10,7 +8,7 @@ namespace UnityExtensions.CustomProperties.Editor {
     [CustomPropertyDrawer(typeof(ExecuteButtonAttribute))]
     internal class ExecuteButtonAttributeDrawer : PropertyDrawer {
         private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly;
-        private ExecuteButtonAttribute Attribute => (ExecuteButtonAttribute)attribute;
+        private ExecuteButtonAttribute Attribute => (ExecuteButtonAttribute) attribute;
 
         /// <summary>Get height for the property.</summary>
         /// <param name="property">Property.</param>
@@ -38,7 +36,7 @@ namespace UnityExtensions.CustomProperties.Editor {
             var method = type.GetMethod(Attribute.MethodName, FLAGS);
 
             GUI.enabled = method != null;
-            string text = Attribute.MethodName;
+            var text = Attribute.MethodName;
 
             if (method == null) {
                 text = $"{Attribute.MethodName} does not exist!";

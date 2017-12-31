@@ -1,5 +1,4 @@
-﻿using UnityExtensions.CustomProperties;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
@@ -7,6 +6,7 @@ namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for <see cref="MinMaxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(MinMaxAttribute))]
     internal class MinMaxAttributeDrawer : PropertyDrawer {
+        private float _lastLabelWidth;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
             if (!(property.propertyType == SerializedPropertyType.Vector2 || property.propertyType == SerializedPropertyType.Vector2Int)) {
@@ -35,8 +35,6 @@ namespace UnityExtensions.CustomProperties.Editor {
             }
             EditorGUI.EndProperty();
         }
-
-        private float _lastLabelWidth;
 
         private void SetLabelWidth(float width) {
             _lastLabelWidth = EditorGUIUtility.labelWidth;

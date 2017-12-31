@@ -1,5 +1,4 @@
-﻿using UnityExtensions.CustomProperties;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
@@ -7,12 +6,12 @@ namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for <see cref="HelpBoxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(HelpBoxAttribute))]
     internal class HelpBoxDrawer : DecoratorDrawer {
-        
+
         public override float GetHeight() {
-            var attr = (HelpBoxAttribute)attribute;
-            float width = EditorGUIUtility.currentViewWidth;
+            var attr = (HelpBoxAttribute) attribute;
+            var width = EditorGUIUtility.currentViewWidth;
             if (attr.Indented) {
-                Rect rect = new Rect(0, 0, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight);
+                var rect = new Rect(0, 0, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight);
                 EditorGUI.indentLevel++;
                 width = EditorGUI.IndentedRect(rect).width;
                 EditorGUI.indentLevel--;
@@ -21,9 +20,9 @@ namespace UnityExtensions.CustomProperties.Editor {
             boxHeight = Mathf.Max(EditorGUIUtility.singleLineHeight * 1.5f, boxHeight);
             return boxHeight;
         }
-        
+
         public override void OnGUI(Rect position) {
-            var attr = (HelpBoxAttribute)attribute;
+            var attr = (HelpBoxAttribute) attribute;
             if (attr.Indented) {
                 EditorGUI.indentLevel++;
                 position = EditorGUI.IndentedRect(position);

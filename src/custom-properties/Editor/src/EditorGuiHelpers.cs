@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
 
@@ -15,9 +14,9 @@ namespace UnityExtensions.CustomProperties.Editor {
         /// </param>
         public static void SplitRectVertically(Rect rectToSplit, out Rect left, out Rect right, float a) {
             a = Mathf.Clamp01(a);
-            float splitPoint = Mathf.LerpUnclamped(rectToSplit.xMin, rectToSplit.xMax, a);
-            left = new Rect(rectToSplit) { xMax = splitPoint };
-            right = new Rect(rectToSplit) { xMin = splitPoint };
+            var splitPoint = Mathf.LerpUnclamped(rectToSplit.xMin, rectToSplit.xMax, a);
+            left = new Rect(rectToSplit) {xMax = splitPoint};
+            right = new Rect(rectToSplit) {xMin = splitPoint};
         }
     }
 }

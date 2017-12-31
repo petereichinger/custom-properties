@@ -1,4 +1,3 @@
-using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,11 +6,11 @@ namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for <see cref="ReadonlyAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(ReadonlyAttribute))]
     internal class ReadonlyDrawer : PropertyDrawer {
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             string value;
 
             switch (property.propertyType) {
-                
                 case SerializedPropertyType.Integer:
                     value = property.intValue.ToString();
                     break;
@@ -39,14 +38,15 @@ namespace UnityExtensions.CustomProperties.Editor {
                 case SerializedPropertyType.Vector2:
                     value = property.vector2Value.ToString();
                     break;
+
                 case SerializedPropertyType.Vector2Int:
                     value = property.vector2IntValue.ToString();
                     break;
 
-
                 case SerializedPropertyType.Vector3:
                     value = property.vector3Value.ToString();
                     break;
+
                 case SerializedPropertyType.Vector3Int:
                     value = property.vector3IntValue.ToString();
                     break;

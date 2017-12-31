@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityExtensions.CustomProperties;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
-    /// <summary>Drawer for the Attribute <see cref="NotWhiteSpaceAttribute" />.</summary>
+
+    /// <summary>Drawer for the Attribute <see cref="NotWhiteSpaceAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(RequireLayerAttribute))]
     internal class RequireLayerAttributeDrawer : PropertyDrawer {
-        
+
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
             if (!CheckType(property) || !CheckValue(property)) {
                 return base.GetPropertyHeight(property, label) + EditorGUIUtility.singleLineHeight * 2f + 2f;
             }
             return base.GetPropertyHeight(property, label);
         }
-        
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-            var nwsa = (RequireLayerAttribute)attribute;
-            string message = string.IsNullOrEmpty(nwsa.Message) ? "Requires a layer" : nwsa.Message;
+            var nwsa = (RequireLayerAttribute) attribute;
+            var message = string.IsNullOrEmpty(nwsa.Message) ? "Requires a layer" : nwsa.Message;
             AttributeDrawerHelpers.MessageDrawerOnGUI(position, property, label, SerializedPropertyType.LayerMask, CheckValue, message);
         }
 
@@ -34,4 +29,3 @@ namespace UnityExtensions.CustomProperties.Editor {
         }
     }
 }
-

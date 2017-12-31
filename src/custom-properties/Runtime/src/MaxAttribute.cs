@@ -8,13 +8,13 @@ namespace UnityExtensions.CustomProperties {
     /// </summary>
     public class MaxAttribute : PropertyAttribute {
 
+        /// <summary>The restricted value.</summary>
+        public float Value { get; set; }
+
         /// <summary>Create a new instance of this attribute.</summary>
         /// <param name="max">The value to restrict to.</param>
         public MaxAttribute(float max) {
             Value = max;
         }
-
-        /// <summary>The restricted value.</summary>
-        public float Value { get; set; }
     }
 }

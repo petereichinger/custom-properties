@@ -2,10 +2,10 @@
 using UnityEngine;
 
 namespace UnityExtensions.CustomEditors {
-    
+
     internal static class PreferenceMenu {
         private const string UNITY_EX_REORDERABLE_LIST = "UNITY-EX-REORDERABLE-LIST";
-        
+
         private static bool _prefsLoaded;
 
         private static bool _useReorderableList;
@@ -16,7 +16,7 @@ namespace UnityExtensions.CustomEditors {
                 return _useReorderableList;
             }
         }
-        
+
         [PreferenceItem("Extensions")]
         public static void PreferencesGUI() {
             LoadPrefs();
@@ -25,7 +25,7 @@ namespace UnityExtensions.CustomEditors {
                 GUILayout.Label("Enhanced Editor", EditorStyles.boldLabel);
 
                 _useReorderableList = EditorGUILayout.Toggle("Use reorderable list for arrays", _useReorderableList);
-                
+
                 if (change.changed) {
                     WritePrefs();
                 }
