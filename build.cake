@@ -8,7 +8,6 @@ const string PROJECT_PATH_ARGUMENT = "projectPath";
 const string UNITY_PATH_ARGUMENT = "unityPath";
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var projectDir = Argument(PROJECT_PATH_ARGUMENT,  (string)null);
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -18,8 +17,6 @@ var projectDir = Argument(PROJECT_PATH_ARGUMENT,  (string)null);
 var buildDir = Directory("./build/");
 
 var releaseDir = buildDir + Directory("bin/Release/");
-var outputDirRuntime = buildDir;
-var outputDirEditor = outputDirRuntime + Directory("Editor");
 
 var solutionFile = File("./src/custom-properties.sln");
 
@@ -36,15 +33,13 @@ var searchPaths = new List<string>{
 //////////////////////////////////////////////////////////////////////
 
 Task("Clean")
-    .Does(() =>
-{
+    .Does(() => {
     CleanDirectory(buildDir);
 });
 
 Task("FindUnity")
     .IsDependentOn("Clean")
-    .Does(() =>
-{
+    .Does(() => {
     if (HasArgument(UNITY_PATH_ARGUMENT)) {
         unityDirectory = Argument<string>(UNITY_PATH_ARGUMENT);
     } else {
@@ -64,9 +59,7 @@ Task("FindUnity")
 
 Task("Build")
     .IsDependentOn("FindUnity")
-    .Does(() =>
-{
-
+    .Does(() => {
     var referencePath = unityDirectory;
     if (IsRunningOnWindows()){
         referencePath += unityAssemblySubDirectoryWindows;
@@ -98,11 +91,11 @@ FilePathCollection GenerateFilePathCollection(params FilePath[] paths){
 Task("CopyToProject")
     .IsDependentOn("Build")
     .Does(() => {
-    if (string.IsNullOrEmpty(projectDir)){
+    if (!HasArgument(PROJECT_PATH_ARGUMENT)) {
         ShowProjectDirInfo();
         throw new ArgumentException($"-{PROJECT_PATH_ARGUMENT} is not set");
     } else {
-        var runtimePath = Directory(projectDir);
+        var runtimePath = Directory(Argument<string>(PROJECT_PATH_ARGUMENT));
         var editorPath = runtimePath + Directory("Editor");
 
         EnsureDirectoryExists(editorPath);
@@ -130,11 +123,13 @@ Task("PrepareRelease")
     var runtimeXml = buildDir + File("custom-properties.xml");
     var editorDll = buildDir + File("custom-properties-editor.dll");
     var editorXml = buildDir + File("custom-properties-editor.xml");
-    var readme = File("README.md");
+
+    var readme =buildDir + File("README.md") ;
+    CopyFile(File("README.md"), readme);
 
     var collection = GenerateFilePathCollection(runtimeDll,runtimeXml,editorDll,editorXml,readme);
 
-    Zip("./", "custom-properties.zip", collection);
+    Zip("./build", "custom-properties.zip", collection);
 });
 
 Task("Default")
