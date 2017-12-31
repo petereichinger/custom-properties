@@ -18,7 +18,7 @@ var buildDir = Directory("./build/");
 
 var releaseDir = buildDir + Directory("bin/Release/");
 
-var solutionFile = File("./src/custom-properties.sln");
+var solutionFile = File("./src/editor-extensions.sln");
 
 var unityAssemblySubDirectoryWindows = Directory("/Editor/Data/Managed");
 var unityAssemblySubDirectoryMac = Directory("/Contents/Managed/");

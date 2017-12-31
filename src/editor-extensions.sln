@@ -3,14 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{D02C3F97-9CD5-4C09-B2F7-B7E5E19204E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "custom-properties\Editor\Editor.csproj", "{D02C3F97-9CD5-4C09-B2F7-B7E5E19204E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runtime", "Runtime\Runtime.csproj", "{EF0F224E-1978-4E73-BDB2-F92F0918AAB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runtime", "custom-properties\Runtime\Runtime.csproj", "{EF0F224E-1978-4E73-BDB2-F92F0918AAB7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65ED9657-976B-4FBE-9612-FFB945869394}"
 	ProjectSection(SolutionItems) = preProject
 		cake.config = cake.config
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "custom-properties", "custom-properties", "{04188D49-3D1C-4E73-9A47-05F8C0964DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D02C3F97-9CD5-4C09-B2F7-B7E5E19204E2} = {04188D49-3D1C-4E73-9A47-05F8C0964DB2}
+		{EF0F224E-1978-4E73-BDB2-F92F0918AAB7} = {04188D49-3D1C-4E73-9A47-05F8C0964DB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69AEA836-868F-4761-A578-BAA44CE0F4CE}
