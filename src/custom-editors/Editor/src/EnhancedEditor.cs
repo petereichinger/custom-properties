@@ -27,7 +27,7 @@ namespace UnityExtensions.CustomEditors {
                     reorderList.drawElementCallback += (rect, index, active, focused) => {
                         var indRect = new Rect(rect);
                         var element = listProperty.GetArrayElementAtIndex(index);
-                        EditorGUI.PropertyField(indRect, element, new GUIContent(element.displayName),true);
+                        EditorGUI.PropertyField(indRect, element, new GUIContent(element.displayName), true);
                     };
                     reorderList.elementHeightCallback += index => {
                         var aElement = listProperty.GetArrayElementAtIndex(index);
@@ -45,7 +45,7 @@ namespace UnityExtensions.CustomEditors {
             iterator.NextVisible(true);
             do {
                 using (new EditorGUI.DisabledGroupScope(iterator.name == "m_Script")) {
-                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray) {
+                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray && PreferenceMenu.UseReorderableList) {
                         var item = _listDict[iterator.propertyPath];
                         var reorderList = item.Item1;
                         var listProperty = item.Item2;
