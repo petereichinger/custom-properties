@@ -4,8 +4,8 @@
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
-const string PROJECT_PATH_ARGUMENT = "projectPath";
-const string UNITY_PATH_ARGUMENT = "unityPath";
+const string PROJECT_PATH_ARGUMENT = "project";
+const string UNITY_PATH_ARGUMENT = "unity";
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 

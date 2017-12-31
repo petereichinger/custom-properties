@@ -36,8 +36,8 @@ There are optional parameters:
 
 |  Parameter   |                                         Meaning                                         |
 |--------------|-----------------------------------------------------------------------------------------|
-| -projectPath | Path to copy the resulting dll and xml files to. This is useful for testing.            |
-| -unityPath   | Path to a Unity installation. This will force the build to use this Unity installation. |
+| -project | Path to copy the resulting dll and xml files to. This is useful for testing.            |
+| -unity   | Path to a Unity installation. This will force the build to use this Unity installation. |
 
 ## Available Properties
 
