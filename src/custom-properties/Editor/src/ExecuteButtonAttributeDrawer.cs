@@ -8,7 +8,7 @@ namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="ExecuteButtonAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(ExecuteButtonAttribute))]
-    public class ExecuteButtonAttributeDrawer : PropertyDrawer {
+    internal class ExecuteButtonAttributeDrawer : PropertyDrawer {
         private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly;
         private ExecuteButtonAttribute Attribute => (ExecuteButtonAttribute)attribute;
 

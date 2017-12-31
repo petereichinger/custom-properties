@@ -6,12 +6,8 @@ namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="MinMaxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(MinMaxAttribute))]
-    public class MinMaxAttributeDrawer : PropertyDrawer {
+    internal class MinMaxAttributeDrawer : PropertyDrawer {
 
-        /// <summary>Get height for the property.</summary>
-        /// <param name="property">Property.</param>
-        /// <param name="label">   Label.</param>
-        /// <returns>The height in pixels.</returns>
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
             if (!(property.propertyType == SerializedPropertyType.Vector2 || property.propertyType == SerializedPropertyType.Vector2Int)) {
                 return EditorGUIUtility.singleLineHeight * 2;
@@ -19,10 +15,6 @@ namespace UnityExtensions.CustomProperties.Editor {
             return base.GetPropertyHeight(property, label);
         }
 
-        /// <summary>Method that draws the attributed property.</summary>
-        /// <param name="position">Position.</param>
-        /// <param name="property">Property to draw.</param>
-        /// <param name="label">   The label of the property.</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             label = EditorGUI.BeginProperty(position, label, property);
 

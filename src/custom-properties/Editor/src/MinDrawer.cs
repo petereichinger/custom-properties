@@ -5,11 +5,7 @@ using UnityEngine;
 namespace UnityExtensions.CustomProperties.Editor {
     /// <summary><see cref="PropertyDrawer" /> for the attribute <see cref="MinAttribute" /></summary>
     [CustomPropertyDrawer(typeof(MinAttribute))]
-    public class MinDrawer : PropertyDrawer {
-        /// <summary>Method that draws the attributed property.</summary>
-        /// <param name="position">Position.</param>
-        /// <param name="property">Property to draw.</param>
-        /// <param name="label">   The label of the property.</param>
+    internal class MinDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var minAttribute = (MinAttribute) attribute;
 

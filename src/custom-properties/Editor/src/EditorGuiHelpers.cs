@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Helper methods for GUI drawing in the inspector.</summary>
-    public static class EditorGuiHelpers {
+    internal static class EditorGuiHelpers {
 
         /// <summary>Split a rect into two parts. <paramref name="a"/> defines the split.</summary>
         /// <param name="rectToSplit">Rect to split</param>

@@ -6,10 +6,8 @@ namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="HelpBoxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(HelpBoxAttribute))]
-    public class HelpBoxDrawer : DecoratorDrawer {
-
-        /// <summary>Get height of the decorator.</summary>
-        /// <returns>The height in pixels.</returns>
+    internal class HelpBoxDrawer : DecoratorDrawer {
+        
         public override float GetHeight() {
             var attr = (HelpBoxAttribute)attribute;
             float width = EditorGUIUtility.currentViewWidth;
@@ -23,9 +21,7 @@ namespace UnityExtensions.CustomProperties.Editor {
             boxHeight = Mathf.Max(EditorGUIUtility.singleLineHeight * 1.5f, boxHeight);
             return boxHeight;
         }
-
-        /// <summary>Draw method for the attribute.</summary>
-        /// <param name="position"></param>
+        
         public override void OnGUI(Rect position) {
             var attr = (HelpBoxAttribute)attribute;
             if (attr.Indented) {

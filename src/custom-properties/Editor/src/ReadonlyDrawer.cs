@@ -6,12 +6,7 @@ namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="ReadonlyAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(ReadonlyAttribute))]
-    public class ReadonlyDrawer : PropertyDrawer {
-
-        /// <summary>Method that draws the attributed property.</summary>
-        /// <param name="position">Position.</param>
-        /// <param name="property">Property to draw.</param>
-        /// <param name="label">   The label of the property.</param>
+    internal class ReadonlyDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             string value;
 
