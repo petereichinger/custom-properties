@@ -52,8 +52,8 @@ Param(
     [switch]$Experimental,
     [switch]$Mono,
     [switch]$SkipToolPackageRestore,
-    [string]$ProjectPath,
-    [string]$UnityPath,
+    [string]$Project,
+    [string]$Unity,
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs
 )
@@ -229,8 +229,8 @@ if ($ShowDescription) { $cakeArguments += "-showdescription" }
 if ($DryRun) { $cakeArguments += "-dryrun" }
 if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }
-if ($ProjectPath) {$cakeArguments += "-ProjectPath=$ProjectPath"}
-if ($UnityPath) {$cakeArguments += "-UnityPath=$UnityPath"}
+if ($Project) {$cakeArguments += "-Project=$ProjectPath"}
+if ($Unity) {$cakeArguments += "-Unity=$UnityPath"}
 $cakeArguments += $ScriptArgs
 
 # Start Cake
