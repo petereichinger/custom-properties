@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
     /// <summary>
     /// Attribute to add to <see cref="LayerMask"/> fields. Will show an error message if the layermask is left empty.
     /// </summary>

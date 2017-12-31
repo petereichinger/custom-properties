@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
 
     /// <summary>
     /// Attribute that adds a button to execute a method. The method must not have any properties.

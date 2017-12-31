@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UnityExtensions.CustomProperties;
+using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     /// <summary><see cref="PropertyDrawer" /> for the attribute <see cref="MaxAttribute" /></summary>
     [CustomPropertyDrawer(typeof(MaxAttribute))]
     public class MaxDrawer : PropertyDrawer {

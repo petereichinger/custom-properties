@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
 
     /// <summary>
     /// Attribute for <see cref="string"/> fields that shows an error message if it is empty or

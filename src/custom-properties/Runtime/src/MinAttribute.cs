@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
 
     /// <summary>
     /// Attribute that restricts a field to be always greater than or equal to a specified value.

@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UnityExtensions.CustomProperties;
+using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for the Attribute <see cref="NotWhiteSpaceAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(NotWhiteSpaceAttribute))]
     public class NotWhiteSpaceAttributeDrawer : PropertyDrawer {

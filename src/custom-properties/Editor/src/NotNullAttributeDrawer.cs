@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UnityExtensions.CustomProperties;
+using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for the Attribute <see cref="NotNullAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(NotNullAttribute))]
     public class NotNullAttributeDrawer : PropertyDrawer {

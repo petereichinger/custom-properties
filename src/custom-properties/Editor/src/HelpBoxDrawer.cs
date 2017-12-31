@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UnityExtensions.CustomProperties;
+using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="HelpBoxAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(HelpBoxAttribute))]

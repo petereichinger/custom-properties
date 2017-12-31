@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
+using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="ExecuteButtonAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(ExecuteButtonAttribute))]

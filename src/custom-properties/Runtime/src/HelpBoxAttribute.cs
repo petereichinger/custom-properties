@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
 
     /// <summary>Attribute to add a help box to a field.</summary>
     public class HelpBoxAttribute : PropertyAttribute {

@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UnityExtensions.CustomProperties;
+using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     /// <summary><see cref="PropertyDrawer" /> for the attribute <see cref="MinAttribute" /></summary>
     [CustomPropertyDrawer(typeof(MinAttribute))]
     public class MinDrawer : PropertyDrawer {

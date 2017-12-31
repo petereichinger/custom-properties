@@ -1,7 +1,8 @@
+using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Drawer for <see cref="TagAttribute"/>.</summary>
     [CustomPropertyDrawer(typeof(TagAttribute))]

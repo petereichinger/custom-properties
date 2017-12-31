@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     internal static class AttributeDrawerHelpers {
 
         internal static void MessageDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label, SerializedPropertyType type, Func<SerializedProperty, bool> valuePredicate, string message) {

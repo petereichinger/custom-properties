@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityExtensions.CustomProperties;
 using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
     /// <summary>Drawer for the Attribute <see cref="NotWhiteSpaceAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(RequireLayerAttribute))]
     public class RequireLayerAttributeDrawer : PropertyDrawer {

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace CustomProperties.Editor {
+namespace UnityExtensions.CustomProperties.Editor {
 
     /// <summary>Helper methods for GUI drawing in the inspector.</summary>
     public static class EditorGuiHelpers {

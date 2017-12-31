@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomProperties {
+namespace UnityExtensions.CustomProperties {
 
     /// <summary>
     /// Attribut for fields that should be set in the editor. Only useable for object references.
