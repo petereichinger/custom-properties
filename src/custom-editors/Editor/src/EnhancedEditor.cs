@@ -5,6 +5,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 namespace UnityExtensions.CustomEditors {
+
     /// <summary>Custom editor with some enhanced functionality.</summary>
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MonoBehaviour), true, isFallback = true)]
