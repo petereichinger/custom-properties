@@ -1,6 +1,6 @@
-# Custom Properties for Unity 3D
+# Unity Extensions
 
-This is a collection of custom properties for the Unity 3D engine.
+This is a collection of extensions for the Unity 3D engine.
 
 ## Usage
 
@@ -8,7 +8,7 @@ This is only tested in Unity 2017.3. It uses the new .NET runtime.
 
 The repo contains a Visual Studio 2017 project. You can build it yourself or check out the *Releases*.
 
-The solution consists of two dll projects. One contains the attribute definitions (`Runtime`) and the other the editor code that draws the Attributes. The editor dll must be placed inside an `Editor` folder within Unity.
+This contains multiple separate extensions for Unity 3D. They can be all added separately.
 
 ## Build
 
@@ -39,7 +39,17 @@ There are optional parameters:
 | -project | Path to copy the resulting dll and xml files to. This is useful for testing.            |
 | -unity   | Path to a Unity installation. This will force the build to use this Unity installation. |
 
-## Available Properties
+# Enhanced Editor
+
+File: `custom-editors.dll`
+
+Contains a new editor for all `MonoBehaviour`-derived components. This will optionally display all lists and arrays with a `ReorderableList`. The behaviour can be changed within a preference pane.
+
+# Custom Properties
+
+Files: `custom-properties.dll` and `custom-properties-editor.dll`
+
+Contains a multitude of custom properties.
 
 ### EnumFlags
 
