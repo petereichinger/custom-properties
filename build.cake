@@ -21,14 +21,13 @@ var releaseDir = buildDir + Directory("bin/Release/");
 var outputDirRuntime = buildDir;
 var outputDirEditor = outputDirRuntime + Directory("Editor");
 
-var solutionFile = File("./CustomProperties.sln");
+var solutionFile = File("./src/custom-properties.sln");
 
 var unityAssemblySubDirectoryWindows = Directory("/Editor/Data/Managed");
 var unityAssemblySubDirectoryMac = Directory("/Contents/Managed/");
 var unityDirectory = (string)null;
 
 var searchPaths = new List<string>{
-    "C:/Program Files/Unity 2017.3",
     "C:/Program Files/Unity",
     "/Applications/Unity/Unity.app"
     };
@@ -86,9 +85,9 @@ void ShowProjectDirInfo() {
     Error("Specify a project directory");
     Error("Example:");
     if (IsRunningOnWindows()) {
-        Error($"./build.ps1 -{PROJECT_PATH_ARGUMENT} PathToProject/Assets/CustomProperties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path -target CopyToProject");
+        Error($"./build.ps1 -{PROJECT_PATH_ARGUMENT} PathToProject/Assets/custom-properties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path -target CopyToProject");
     } else {
-        Error($"./build.sh -Target=CopyToProject -{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/CustomProperties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path");
+        Error($"./build.sh -Target=CopyToProject -{PROJECT_PATH_ARGUMENT}=PathToProject/Assets/custom-properties/ -{UNITY_PATH_ARGUMENT} Optional/Unity/Path");
     }
 }
 
@@ -109,11 +108,10 @@ Task("CopyToProject")
         EnsureDirectoryExists(editorPath);
 
         Information($"Copying files to: {runtimePath.ToString()}");
-        var runtimeDll = buildDir + File("CustomProperties.dll");
-        var runtimeXml = buildDir + File("CustomProperties.xml");
-
-        var editorDll = buildDir + File("CustomPropertiesEditor.dll");
-        var editorXml = buildDir + File("CustomPropertiesEditor.xml");
+        var runtimeDll = buildDir + File("custom-properties.dll");
+        var runtimeXml = buildDir + File("custom-properties.xml");
+        var editorDll = buildDir + File("custom-properties-editor.dll");
+        var editorXml = buildDir + File("custom-properties-editor.xml");
 
         var filesRuntime = GenerateFilePathCollection(runtimeDll, runtimeXml);
         var filesEditor = GenerateFilePathCollection(editorDll, editorXml);
@@ -127,16 +125,16 @@ Task("PrepareRelease")
     .IsDependentOn("Build")
     .Does(()=> {
 
-    Information("Creating ZIP archive: CustomProperties.zip");
-    var runtimeDll = buildDir + File("CustomProperties.dll");
-    var runtimeXml = buildDir + File("CustomProperties.xml");
-    var editorDll = buildDir + File("CustomPropertiesEditor.dll");
-    var editorXml = buildDir + File("CustomPropertiesEditor.xml");
+    Information("Creating ZIP archive: custom-properties.zip");
+    var runtimeDll = buildDir + File("custom-properties.dll");
+    var runtimeXml = buildDir + File("custom-properties.xml");
+    var editorDll = buildDir + File("custom-properties-editor.dll");
+    var editorXml = buildDir + File("custom-properties-editor.xml");
     var readme = File("README.md");
 
     var collection = GenerateFilePathCollection(runtimeDll,runtimeXml,editorDll,editorXml,readme);
 
-    Zip("./", "CustomProperties.zip", collection);
+    Zip("./", "custom-properties.zip", collection);
 });
 
 Task("Default")
