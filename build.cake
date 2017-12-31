@@ -43,7 +43,7 @@ Task("FindUnity")
     if (HasArgument(UNITY_PATH_ARGUMENT)) {
         unityDirectory = Argument<string>(UNITY_PATH_ARGUMENT);
     } else {
-    foreach (var searchPath in searchPaths) {
+        foreach (var searchPath in searchPaths) {
             if (DirectoryExists(searchPath)) {
                 unityDirectory = searchPath;
                 break;
@@ -88,6 +88,20 @@ FilePathCollection GenerateFilePathCollection(params FilePath[] paths){
     return new FilePathCollection(paths, PathComparer.Default);
 }
 
+FilePathCollection RuntimeFiles() {
+    return GenerateFilePathCollection(
+        buildDir + File("custom-properties.dll"),
+        buildDir + File("custom-properties.xml"));
+}
+
+FilePathCollection EditorFiles() {
+    return GenerateFilePathCollection(
+        buildDir + File("custom-properties-editor.dll"),
+        buildDir + File("custom-properties-editor.xml"),
+        buildDir + File("custom-editors.dll"),
+        buildDir + File("custom-editors.xml"));
+}
+
 Task("CopyToProject")
     .IsDependentOn("Build")
     .Does(() => {
@@ -101,16 +115,9 @@ Task("CopyToProject")
         EnsureDirectoryExists(editorPath);
 
         Information($"Copying files to: {runtimePath.ToString()}");
-        var runtimeDll = buildDir + File("custom-properties.dll");
-        var runtimeXml = buildDir + File("custom-properties.xml");
-        var editorDll = buildDir + File("custom-properties-editor.dll");
-        var editorXml = buildDir + File("custom-properties-editor.xml");
 
-        var filesRuntime = GenerateFilePathCollection(runtimeDll, runtimeXml);
-        var filesEditor = GenerateFilePathCollection(editorDll, editorXml);
-
-        CopyFiles(filesRuntime, runtimePath);
-        CopyFiles(filesEditor, editorPath);
+        CopyFiles(RuntimeFiles(), runtimePath);
+        CopyFiles(EditorFiles(), editorPath);
     }
 });
 
@@ -119,17 +126,13 @@ Task("PrepareRelease")
     .Does(()=> {
 
     Information("Creating ZIP archive: custom-properties.zip");
-    var runtimeDll = buildDir + File("custom-properties.dll");
-    var runtimeXml = buildDir + File("custom-properties.xml");
-    var editorDll = buildDir + File("custom-properties-editor.dll");
-    var editorXml = buildDir + File("custom-properties-editor.xml");
 
-    var readme =buildDir + File("README.md") ;
+    var readme = buildDir + File("README.md") ;
     CopyFile(File("README.md"), readme);
 
-    var collection = GenerateFilePathCollection(runtimeDll,runtimeXml,editorDll,editorXml,readme);
+    var collection = EditorFiles() + RuntimeFiles() + readme;
 
-    Zip("./build", "custom-properties.zip", collection);
+    Zip(buildDir, "custom-properties.zip", collection);
 });
 
 Task("Default")
