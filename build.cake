@@ -50,11 +50,11 @@ Task("FindUnity")
             }
         }
     }
+    Information($"Using {unityDirectory}");
     if (string.IsNullOrEmpty(unityDirectory) || !DirectoryExists(unityDirectory)){
-        Error("Could not find Unity. Please specify a valid Unity installation with -unityPath argument");
+        Error($"Could not find Unity. Please specify a valid Unity installation with -{UNITY_PATH_ARGUMENT} argument");
         throw new ArgumentException("Unity not found");
     }
-    Information($"Using {unityDirectory}");
 });
 
 Task("Build")
