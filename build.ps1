@@ -229,8 +229,8 @@ if ($ShowDescription) { $cakeArguments += "-showdescription" }
 if ($DryRun) { $cakeArguments += "-dryrun" }
 if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }
-if ($Project) {$cakeArguments += "-Project=$ProjectPath"}
-if ($Unity) {$cakeArguments += "-Unity=$UnityPath"}
+if ($Project) {$cakeArguments += "-Project=$Project"}
+if ($Unity) {$cakeArguments += "-Unity=$Unity"}
 $cakeArguments += $ScriptArgs
 
 # Start Cake
