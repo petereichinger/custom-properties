@@ -9,7 +9,7 @@ namespace UnityExtensions.CustomEditors {
     /// <summary>Custom editor with some enhanced functionality.</summary>
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MonoBehaviour), true, isFallback = true)]
-    public class EnhancedEditor : Editor {
+    internal class EnhancedEditor : Editor {
         private Dictionary<string, Tuple<ReorderableList, SerializedProperty>> _listDict;
 
         private void OnEnable() {
@@ -25,15 +25,7 @@ namespace UnityExtensions.CustomEditors {
                     reorderList.drawHeaderCallback += rect => GUI.Label(rect, listProperty.displayName);
                     reorderList.onCanRemoveCallback += reorderableList => true;
                     reorderList.onRemoveCallback += reorderableList => { listProperty.DeleteArrayElementAtIndex(reorderableList.index); };
-                    reorderList.drawElementCallback += (rect, index, active, focused) => {
-                        var indRect = new Rect(rect);
-                        var element = listProperty.GetArrayElementAtIndex(index);
-                        EditorGUI.PropertyField(indRect, element, new GUIContent(element.displayName), true);
-                    };
-                    reorderList.elementHeightCallback += index => {
-                        var aElement = listProperty.GetArrayElementAtIndex(index);
-                        return EditorGUI.GetPropertyHeight(aElement, true);
-                    };
+
                     _listDict.Add(listProperty.propertyPath, Tuple.Create(reorderList, listProperty));
                 }
             } while (iterator.NextVisible(false));
@@ -52,16 +44,13 @@ namespace UnityExtensions.CustomEditors {
                         var listProperty = item.Item2;
                         reorderList.drawElementCallback = (rect, index, active, focused) => {
                             var indRect = new Rect(rect);
-                            indRect.x += 8f;
+                            indRect.xMin += 8f;
                             EditorGUI.PropertyField(indRect, listProperty.GetArrayElementAtIndex(index), true);
                         };
-                        reorderList.elementHeightCallback = index => {
-                            var aElement = listProperty.GetArrayElementAtIndex(index);
-                            return EditorGUI.GetPropertyHeight(aElement, true);
-                        };
-                        EditorGUI.indentLevel++;
+                        reorderList.elementHeightCallback = index => EditorGUI.GetPropertyHeight(listProperty.GetArrayElementAtIndex(index), true) + 4f;
+//                        EditorGUI.indentLevel++;
                         reorderList.DoLayoutList();
-                        EditorGUI.indentLevel--;
+//                        EditorGUI.indentLevel--;
                     } else {
                         EditorGUILayout.PropertyField(iterator, true);
                     }
