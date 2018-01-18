@@ -61,6 +61,7 @@
     <Compile Include="src\MaxDrawer.cs" />
     <Compile Include="src\MinDrawer.cs" />
     <Compile Include="src\MinMaxAttributeDrawer.cs" />
+    <Compile Include="src\MustBePrefabAttributeDrawer.cs" />
     <Compile Include="src\NotWhiteSpaceAttributeDrawer.cs" />
     <Compile Include="src\NotNullAttributeDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

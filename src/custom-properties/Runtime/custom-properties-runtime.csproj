@@ -54,6 +54,7 @@
     <Compile Include="src\MaxAttribute.cs" />
     <Compile Include="src\MinAttribute.cs" />
     <Compile Include="src\MinMaxAttribute.cs" />
+    <Compile Include="src\MustBePrefabAttribute.cs" />
     <Compile Include="src\NotNullAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\NotWhiteSpaceAttribute.cs" />
