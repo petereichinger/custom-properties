@@ -98,8 +98,10 @@ FilePathCollection EditorFiles() {
     return GenerateFilePathCollection(
         buildDir + File("custom-properties-editor.dll"),
         buildDir + File("custom-properties-editor.xml"),
-        buildDir + File("custom-editors.dll"),
-        buildDir + File("custom-editors.xml"));
+        buildDir + File("enhanced-editor.dll"),
+        buildDir + File("enhanced-editor.xml"),
+        buildDir + File("transform-editor.dll"),
+        buildDir + File("transform-editor.xml"));
 }
 
 Task("CopyToProject")

@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "custom-properties", "custom
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "custom-editors", "custom-editors", "{61520FC8-64D5-46AD-8E92-B9C0F6C55CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "custom-editors-editor", "custom-editors\Editor\custom-editors-editor.csproj", "{A318A209-F9EC-4717-8759-6053E93624B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enhanced-editor", "custom-editors\Editor\enhanced-editor.csproj", "{A318A209-F9EC-4717-8759-6053E93624B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transform-editor", "transform-editor\transform-editor.csproj", "{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{A318A209-F9EC-4717-8759-6053E93624B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A318A209-F9EC-4717-8759-6053E93624B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A318A209-F9EC-4717-8759-6053E93624B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{D02C3F97-9CD5-4C09-B2F7-B7E5E19204E2} = {04188D49-3D1C-4E73-9A47-05F8C0964DB2}
 		{EF0F224E-1978-4E73-BDB2-F92F0918AAB7} = {04188D49-3D1C-4E73-9A47-05F8C0964DB2}
 		{A318A209-F9EC-4717-8759-6053E93624B8} = {61520FC8-64D5-46AD-8E92-B9C0F6C55CF5}
+		{CA8CB501-8EF2-45F7-A55B-15AE801ECA6E} = {61520FC8-64D5-46AD-8E92-B9C0F6C55CF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69AEA836-868F-4761-A578-BAA44CE0F4CE}

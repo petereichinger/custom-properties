@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace UnityExtensions.CustomEditors {
+namespace UnityExtensions.EnhancedEditor {
 
     /// <summary>Custom editor with some enhanced functionality.</summary>
     [CanEditMultipleObjects]

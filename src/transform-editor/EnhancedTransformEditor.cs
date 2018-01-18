@@ -8,11 +8,15 @@ using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomEditors {  
-    /// <summary>Custom editor with some enhanced functionality.</summary>
+    /// <summary>Custom editor for <see cref="Transform"/> components with simple reset buttons.</summary>
     [CanEditMultipleObjects]
     [CustomEditor(typeof(Transform))]
     internal class EnhancedTransformEditor : Editor {
         public override void OnInspectorGUI() {
+            DrawEnhancedEditor();
+        }
+
+        private void DrawEnhancedEditor() {
             serializedObject.Update();
 
             var positionProperty = serializedObject.FindProperty("m_LocalPosition");
@@ -21,14 +25,14 @@ namespace UnityExtensions.CustomEditors {
             var scaleProperty = serializedObject.FindProperty("m_LocalScale");
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(positionProperty,new GUIContent("Position"), GUILayout.ExpandWidth(true));
-            if (GUILayout.Button("R",EditorStyles.miniButton,GUILayout.ExpandWidth(false))) {
+            EditorGUILayout.PropertyField(positionProperty, new GUIContent("Position"), GUILayout.ExpandWidth(true));
+            if (GUILayout.Button("R", EditorStyles.miniButton, GUILayout.ExpandWidth(false))) {
                 positionProperty.vector3Value = Vector3.zero;
             }
             EditorGUILayout.EndHorizontal();
             using (var changed = new EditorGUI.ChangeCheckScope()) {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(eulerProperty,new GUIContent("Rotation"), GUILayout.ExpandWidth(true));
+                EditorGUILayout.PropertyField(eulerProperty, new GUIContent("Rotation"), GUILayout.ExpandWidth(true));
                 bool reset = false;
                 if (GUILayout.Button("R", EditorStyles.miniButton, GUILayout.ExpandWidth(false))) {
                     eulerProperty.vector3Value = Vector3.zero;
@@ -46,7 +50,6 @@ namespace UnityExtensions.CustomEditors {
             }
             EditorGUILayout.EndHorizontal();
             serializedObject.ApplyModifiedProperties();
-
         }
     }
 }
