@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityExtensions.CustomEditors {
 
-    internal static class PreferenceMenu {
+    internal static class PreferencesMenu {
         private const string UNITY_EX_REORDERABLE_LIST = "UNITY-EX-REORDERABLE-LIST";
 
         private static bool _prefsLoaded;

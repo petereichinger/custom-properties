@@ -38,7 +38,7 @@ namespace UnityExtensions.CustomEditors {
             iterator.NextVisible(true);
             do {
                 using (new EditorGUI.DisabledGroupScope(iterator.name == "m_Script")) {
-                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray && PreferenceMenu.UseReorderableList) {
+                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray && PreferencesMenu.UseReorderableList) {
                         var item = _listDict[iterator.propertyPath];
                         var reorderList = item.Item1;
                         var listProperty = item.Item2;
