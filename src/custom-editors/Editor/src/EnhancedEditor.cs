@@ -5,7 +5,6 @@ using UnityEditorInternal;
 using UnityEngine;
 
 namespace UnityExtensions.EnhancedEditor {
-
     /// <summary>Custom editor with some enhanced functionality.</summary>
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MonoBehaviour), true, isFallback = true)]
@@ -21,10 +20,14 @@ namespace UnityExtensions.EnhancedEditor {
                     var listProperty = serializedObject.FindProperty(iterator.name);
                     var reorderList = new ReorderableList(serializedObject, listProperty, true, true, true, true);
 
-                    reorderList.drawElementCallback += (rect, index, active, focused) => { EditorGUI.PropertyField(rect, listProperty.GetArrayElementAtIndex(index)); };
+                    reorderList.drawElementCallback += (rect, index, active, focused) => {
+                        EditorGUI.PropertyField(rect, listProperty.GetArrayElementAtIndex(index));
+                    };
                     reorderList.drawHeaderCallback += rect => GUI.Label(rect, listProperty.displayName);
                     reorderList.onCanRemoveCallback += reorderableList => true;
-                    reorderList.onRemoveCallback += reorderableList => { listProperty.DeleteArrayElementAtIndex(reorderableList.index); };
+                    reorderList.onRemoveCallback += reorderableList => {
+                        listProperty.DeleteArrayElementAtIndex(reorderableList.index);
+                    };
 
                     _listDict.Add(listProperty.propertyPath, Tuple.Create(reorderList, listProperty));
                 }
@@ -38,7 +41,8 @@ namespace UnityExtensions.EnhancedEditor {
             iterator.NextVisible(true);
             do {
                 using (new EditorGUI.DisabledGroupScope(iterator.name == "m_Script")) {
-                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray && PreferencesMenu.UseReorderableList) {
+                    if (iterator.propertyType == SerializedPropertyType.Generic && iterator.isArray &&
+                        PreferencesMenu.UseReorderableList) {
                         var item = _listDict[iterator.propertyPath];
                         var reorderList = item.Item1;
                         var listProperty = item.Item2;
@@ -47,7 +51,8 @@ namespace UnityExtensions.EnhancedEditor {
                             indRect.xMin += 8f;
                             EditorGUI.PropertyField(indRect, listProperty.GetArrayElementAtIndex(index), true);
                         };
-                        reorderList.elementHeightCallback = index => EditorGUI.GetPropertyHeight(listProperty.GetArrayElementAtIndex(index), true) + 4f;
+                        reorderList.elementHeightCallback = index =>
+                            EditorGUI.GetPropertyHeight(listProperty.GetArrayElementAtIndex(index), true) + 4f;
 //                        EditorGUI.indentLevel++;
                         reorderList.DoLayoutList();
 //                        EditorGUI.indentLevel--;
@@ -56,6 +61,7 @@ namespace UnityExtensions.EnhancedEditor {
                     }
                 }
             } while (iterator.NextVisible(false));
+
             serializedObject.ApplyModifiedProperties();
         }
     }

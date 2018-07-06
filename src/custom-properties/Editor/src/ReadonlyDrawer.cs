@@ -2,11 +2,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
-
-    /// <summary>Drawer for <see cref="ReadonlyAttribute"/>.</summary>
+    /// <summary>Drawer for <see cref="ReadonlyAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(ReadonlyAttribute))]
     internal class ReadonlyDrawer : PropertyDrawer {
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             string value;
 
@@ -72,9 +70,11 @@ namespace UnityExtensions.CustomProperties.Editor {
                     break;
 
                 default:
-                    EditorGUI.HelpBox(position, "Generic type is not supported by readonly attribute", MessageType.Error);
+                    EditorGUI.HelpBox(position, "Generic type is not supported by readonly attribute",
+                        MessageType.Error);
                     return;
             }
+
             position = EditorGUI.PrefixLabel(position, new GUIContent(property.displayName));
             EditorGUI.SelectableLabel(position, value);
         }

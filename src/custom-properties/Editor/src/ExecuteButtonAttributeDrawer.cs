@@ -3,11 +3,12 @@ using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
-
-    /// <summary>Drawer for <see cref="ExecuteButtonAttribute"/>.</summary>
+    /// <summary>Drawer for <see cref="ExecuteButtonAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(ExecuteButtonAttribute))]
     internal class ExecuteButtonAttributeDrawer : PropertyDrawer {
-        private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly;
+        private const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public |
+                                           BindingFlags.DeclaredOnly;
+
         private ExecuteButtonAttribute Attribute => (ExecuteButtonAttribute) attribute;
 
         /// <summary>Get height for the property.</summary>
@@ -41,9 +42,11 @@ namespace UnityExtensions.CustomProperties.Editor {
             if (method == null) {
                 text = $"{Attribute.MethodName} does not exist!";
             }
+
             if (GUI.Button(buttonRect, text)) {
                 method?.Invoke(property.serializedObject.targetObject, null);
             }
+
             GUI.enabled = true;
         }
     }

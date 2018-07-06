@@ -2,16 +2,17 @@
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
-
-    /// <summary>Drawer for <see cref="MinMaxAttribute"/>.</summary>
+    /// <summary>Drawer for <see cref="MinMaxAttribute" />.</summary>
     [CustomPropertyDrawer(typeof(MinMaxAttribute))]
     internal class MinMaxAttributeDrawer : PropertyDrawer {
         private float _lastLabelWidth;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-            if (!(property.propertyType == SerializedPropertyType.Vector2 || property.propertyType == SerializedPropertyType.Vector2Int)) {
+            if (!(property.propertyType == SerializedPropertyType.Vector2 ||
+                  property.propertyType == SerializedPropertyType.Vector2Int)) {
                 return EditorGUIUtility.singleLineHeight * 2;
             }
+
             return base.GetPropertyHeight(property, label);
         }
 
@@ -33,6 +34,7 @@ namespace UnityExtensions.CustomProperties.Editor {
                     ShowErrorBox(position);
                     return;
             }
+
             EditorGUI.EndProperty();
         }
 
@@ -47,7 +49,7 @@ namespace UnityExtensions.CustomProperties.Editor {
 
         private void ShowVector2(Rect content, SerializedProperty property) {
             var value = property.vector2Value;
-            EditorGuiHelpers.SplitRectVertically(content, out Rect left, out Rect right, 0.5f);
+            EditorGuiHelpers.SplitRectVertically(content, out var left, out var right, 0.5f);
             SetLabelWidth(30f);
             using (var check = new EditorGUI.ChangeCheckScope()) {
                 var newMin = EditorGUI.FloatField(left, "Min", value.x);
@@ -64,13 +66,14 @@ namespace UnityExtensions.CustomProperties.Editor {
                     }
                 }
             }
+
             ResetLabelWidth();
         }
 
         private void ShowVector2Int(Rect content, SerializedProperty property) {
             var value = property.vector2IntValue;
 
-            EditorGuiHelpers.SplitRectVertically(content, out Rect left, out Rect right, 0.5f);
+            EditorGuiHelpers.SplitRectVertically(content, out var left, out var right, 0.5f);
             SetLabelWidth(30f);
             using (var check = new EditorGUI.ChangeCheckScope()) {
                 var newMin = EditorGUI.IntField(left, "Min", value.x);
@@ -86,6 +89,7 @@ namespace UnityExtensions.CustomProperties.Editor {
                     }
                 }
             }
+
             ResetLabelWidth();
         }
 

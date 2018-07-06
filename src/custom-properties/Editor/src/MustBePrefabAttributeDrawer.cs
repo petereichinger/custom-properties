@@ -4,7 +4,6 @@ using UnityEngine;
 namespace UnityExtensions.CustomProperties.Editor {
     [CustomPropertyDrawer(typeof(MustBePrefabAttribute))]
     internal class MustBePrefabAttributeDrawer : PropertyDrawer {
-
         private float BoxXOffset => EditorGUIUtility.labelWidth;
         private float BoxWidth => EditorGUIUtility.fieldWidth;
         private MustBePrefabAttribute Attribute => (MustBePrefabAttribute) attribute;
@@ -13,6 +12,7 @@ namespace UnityExtensions.CustomProperties.Editor {
             if (property.propertyType != SerializedPropertyType.ObjectReference) {
                 return "Only valid for object references";
             }
+
             return Attribute.Message;
         }
 
@@ -26,24 +26,24 @@ namespace UnityExtensions.CustomProperties.Editor {
             if (!IsPrefab(property)) {
                 height += EditorStyles.helpBox.CalcHeight(GetGUIContent(property), BoxWidth);
             }
+
             return height;
         }
-        
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var height = base.GetPropertyHeight(property, label);
 
             position.height = height;
             EditorGUI.PropertyField(position, property, label);
             position.yMin += height;
-          
+
             if (!IsPrefab(property)) {
                 var size = EditorStyles.helpBox.CalcHeight(GetGUIContent(property), BoxWidth);
                 var boxRect = new Rect(position) {height = size};
                 boxRect.xMin += BoxXOffset;
-                EditorGUI.HelpBox(boxRect,GetMessage(property),MessageType.Error);
+                EditorGUI.HelpBox(boxRect, GetMessage(property), MessageType.Error);
                 position.yMin += size;
             }
-
         }
 
 
@@ -51,6 +51,7 @@ namespace UnityExtensions.CustomProperties.Editor {
             if (property.propertyType != SerializedPropertyType.ObjectReference) {
                 return false;
             }
+
             if (property.objectReferenceValue == null) {
                 return false;
             }

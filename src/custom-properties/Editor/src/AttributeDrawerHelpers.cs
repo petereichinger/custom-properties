@@ -3,10 +3,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace UnityExtensions.CustomProperties.Editor {
-
     internal static class AttributeDrawerHelpers {
-
-        internal static void MessageDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label, SerializedPropertyType type, Func<SerializedProperty, bool> valuePredicate, string message) {
+        internal static void MessageDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label,
+            SerializedPropertyType type, Func<SerializedProperty, bool> valuePredicate, string message) {
             var propertyRect = position;
             var propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
             propertyRect.height = propertyHeight;
@@ -15,7 +14,8 @@ namespace UnityExtensions.CustomProperties.Editor {
             warningRect.yMin += propertyHeight + 2f;
             warningRect.xMin += 12f;
             if (property.propertyType != type) {
-                EditorGUI.HelpBox(warningRect, $"Only applicable to {ObjectNames.NicifyVariableName(type.ToString())}", MessageType.Error);
+                EditorGUI.HelpBox(warningRect, $"Only applicable to {ObjectNames.NicifyVariableName(type.ToString())}",
+                    MessageType.Error);
             }
 
             if (!valuePredicate(property)) {
@@ -23,7 +23,8 @@ namespace UnityExtensions.CustomProperties.Editor {
             }
         }
 
-        internal static void ValueRestrictionDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label, Func<int, int> intModifier, Func<float, float> floatModifier) {
+        internal static void ValueRestrictionDrawerOnGUI(Rect position, SerializedProperty property, GUIContent label,
+            Func<int, int> intModifier, Func<float, float> floatModifier) {
             switch (property.propertyType) {
                 case SerializedPropertyType.Integer:
                     using (var check = new EditorGUI.ChangeCheckScope()) {
@@ -35,6 +36,7 @@ namespace UnityExtensions.CustomProperties.Editor {
                             property.intValue = intValue;
                         }
                     }
+
                     break;
 
                 case SerializedPropertyType.Float:
@@ -46,6 +48,7 @@ namespace UnityExtensions.CustomProperties.Editor {
                             property.floatValue = floatValue;
                         }
                     }
+
                     break;
 
                 default:

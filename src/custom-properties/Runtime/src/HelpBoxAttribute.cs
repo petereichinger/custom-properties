@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 
 namespace UnityExtensions.CustomProperties {
-
     /// <summary>Attribute to add a help box to a field.</summary>
     public class HelpBoxAttribute : PropertyAttribute {
-
         /// <summary>
-        /// Type of help box. This has to be added here because UnityEditor can not be added to game code.
+        ///     Type of help box. This has to be added here because UnityEditor can not be added to game code.
         /// </summary>
         public enum HelpBoxType {
-
             /// <summary>None message.</summary>
             None,
 
