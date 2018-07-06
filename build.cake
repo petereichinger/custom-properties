@@ -24,6 +24,10 @@ var unityAssemblySubDirectoryWindows = Directory("/Editor/Data/Managed");
 var unityAssemblySubDirectoryMac = Directory("/Contents/Managed/");
 var unityDirectory = (string)null;
 
+var hubPaths = new List<string>{
+    "C:/Program Files/Unity/Hub/Editor"
+};
+
 var searchPaths = new List<string>{
     "C:/Program Files/Unity",
     "/Applications/Unity/Unity.app"
@@ -43,10 +47,18 @@ Task("FindUnity")
     if (HasArgument(UNITY_PATH_ARGUMENT)) {
         unityDirectory = Argument<string>(UNITY_PATH_ARGUMENT);
     } else {
-        foreach (var searchPath in searchPaths) {
-            if (DirectoryExists(searchPath)) {
-                unityDirectory = searchPath;
-                break;
+        foreach (var hubPath in hubPaths){
+            if (DirectoryExists(hubPath)){
+                var versions = GetSubDirectories(hubPath);
+                unityDirectory = versions.Last().ToString();
+            }
+        }
+        if (string.IsNullOrEmpty(unityDirectory)){
+            foreach (var searchPath in searchPaths) {
+                if (DirectoryExists(searchPath)) {
+                    unityDirectory = searchPath;
+                    break;
+                }
             }
         }
     }
