@@ -20,12 +20,17 @@ var releaseDir = buildDir + Directory("bin/Release/");
 
 var solutionFile = File("./src/editor-extensions.sln");
 
+
+var hub = false;
+
 var unityAssemblySubDirectoryWindows = Directory("/Editor/Data/Managed");
 var unityAssemblySubDirectoryMac = Directory("/Contents/Managed/");
+var unityAssemblySubDirectoryMacHub = Directory("/Unity.app/Contents/Managed/");
 var unityDirectory = (string)null;
 
 var hubPaths = new List<string>{
-    "C:/Program Files/Unity/Hub/Editor"
+    "C:/Program Files/Unity/Hub/Editor",
+    "/Applications/Unity/Hub/Editor"
 };
 
 var searchPaths = new List<string>{
@@ -51,9 +56,10 @@ Task("FindUnity")
             if (DirectoryExists(hubPath)){
                 var versions = GetSubDirectories(hubPath);
                 unityDirectory = versions.Last().ToString();
+                hub = true;
             }
         }
-        if (string.IsNullOrEmpty(unityDirectory)){
+        if (!hub){
             foreach (var searchPath in searchPaths) {
                 if (DirectoryExists(searchPath)) {
                     unityDirectory = searchPath;
@@ -76,8 +82,13 @@ Task("Build")
     if (IsRunningOnWindows()){
         referencePath += unityAssemblySubDirectoryWindows;
     } else {
-        referencePath += unityAssemblySubDirectoryMac;
+        if (hub) {
+            referencePath += unityAssemblySubDirectoryMacHub;
+        } else {
+            referencePath += unityAssemblySubDirectoryMac;
+        }
     }
+    Information(referencePath);
     MSBuild(solutionFile, settings =>
         settings.SetVerbosity(Verbosity.Minimal)
             .SetConfiguration(configuration)
